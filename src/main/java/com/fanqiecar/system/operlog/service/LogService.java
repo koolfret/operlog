@@ -1,12 +1,21 @@
 package com.fanqiecar.system.operlog.service;
 
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.ibatis.reflection.MetaClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +24,7 @@ import com.fanqiecar.system.operlog.mapper.LogMapper;
 
 @Service
 public class LogService {
-	private static Logger log=LoggerFactory.getLogger(LogService.class);
+	private static Log log=LogFactory.getLog(LogService.class.getName());
 	
 	@Autowired
 	private LogMapper logMapper;
@@ -59,5 +68,50 @@ public class LogService {
 		this.saveLog(tableName,logTime, userId, userName, methodName,viewOper,extLog);
 		
 	}
+	
+	public <T> List<T> queryLog(String tableName, Map<String, Object> param,Class<T> beanCls){
+		List<T> retList=new ArrayList<T>();
+		List<Map<String,Object>> listMap=this.logMapper.queryLog(tableName,param);
+		if(listMap!=null) {
+			for(Map<String,Object> m:listMap) {
+				try {
+					T obj=this.map2Bean(m, beanCls);
+					retList.add(obj);
+				}catch(Exception e) {
+					log.error(e.getMessage(),e);
+				}
+			}
+		}
+		return retList;
+		
+	}
+	
+	private  <T, K, V> T map2Bean(Map<K, V> mp, Class<T> beanCls)
+            throws Exception, IllegalArgumentException, InvocationTargetException {
+        T t = null;
+        try {
+
+            BeanInfo beanInfo = Introspector.getBeanInfo(beanCls);
+            PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
+
+            t = beanCls.newInstance();
+
+            for (PropertyDescriptor property : propertyDescriptors) {
+                String key = property.getName();
+
+                if (mp.containsKey(key)) {
+                    Object value = mp.get(key);
+                    Method setter = property.getWriteMethod();// Java中提供了用来访问某个属性的
+                                                                // getter/setter方法
+                    setter.invoke(t, value);
+                }
+            }
+
+        } catch (IntrospectionException e) {
+
+            e.printStackTrace();
+        }
+        return t;
+    }
 	
 }

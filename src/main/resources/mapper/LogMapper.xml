@@ -27,6 +27,15 @@
 		)
 	</insert>
 	
+	<select id="queryLog" resultType="map">
+		select * from ${tableName} 
+		<where>
+			<foreach collection="param.keys"  separator="," item="item" >
+				${item}=#{param[${item}]}
+			</foreach>
+		</where>
+	</select>
+	
 	
 	
 </mapper>

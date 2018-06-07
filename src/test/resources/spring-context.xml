@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:repositories="http://www.springframework.org/schema/data/repository"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/data/mongo 
+          http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/data/repository 
+          http://www.springframework.org/schema/data/repository/spring-repository.xsd
+          http://www.springframework.org/schema/util
+          http://www.springframework.org/schema/util/spring-util.xsd
+          http://www.springframework.org/schema/aop 
+          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+     
+   
+
+    <context:component-scan base-package="com.fanqiecar" >
+    </context:component-scan>
+    
+   
+	<!--
+	
+		CREATE TABLE `t_violation_log` (
+		  `id` int(11) NOT NULL AUTO_INCREMENT,
+		  `violation_id` int(11) DEFAULT NULL COMMENT '违章id',
+		  `log_time` datetime DEFAULT NULL COMMENT '记录时间',
+		  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+		  `user_name` varchar(45) DEFAULT NULL COMMENT '用户名称',
+		  `method_name` varchar(512) DEFAULT NULL COMMENT '源码方法名',
+		  `view_oper` varchar(128) DEFAULT NULL COMMENT '显示操作名',
+		  `remark` varchar(256) DEFAULT NULL COMMENT '备注',
+		  PRIMARY KEY (`id`)
+		) ENGINE=InnoDB  DEFAULT CHARSET=utf8
+	 
+	 -->
+	
+	<!-- mybatis 相关 -->
+     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=utf8" />
+        <property name="username" value="root" />
+        <property name="password" value="" />
+    </bean>
+	
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"/>
+       
+	    <property name="mapperLocations" >
+            <list>
+                <value>classpath*:mapper/**/*.xml</value>    
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.fanqiecar.**.mapper"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+	
+
+
+  
+</beans>

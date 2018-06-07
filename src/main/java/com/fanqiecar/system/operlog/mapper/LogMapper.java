@@ -1,6 +1,7 @@
 package com.fanqiecar.system.operlog.mapper;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -27,4 +28,6 @@ public interface LogMapper {
 	public void saveLog(@Param("tableName") String tableName, @Param("logTime") Date logTime,
 			@Param("userId") Long userId, @Param("userName") String userName, @Param("methodName") String methodName,
 			@Param("viewOper") String viewOper, @Param("extLog") Map<String, Object> extLog);
+	
+	public  List<Map<String,Object>> queryLog(@Param("tableName") String tableName,@Param("param") Map<String, Object> param);
 }
