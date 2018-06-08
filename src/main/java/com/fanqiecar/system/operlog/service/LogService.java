@@ -114,9 +114,23 @@ public class LogService {
 		return name;
 	}
 
+	/**
+	 * 查询日志
+	 * @param tableName 表名
+	 * @param param 参数
+	 * @return
+	 */
 	public  List<Map<String,Object>> queryLog(String tableName, Map<String, Object> param) {
 		return logMapper.queryLog(tableName, param);
 	}
+	
+	/**
+	 * 查询日志
+	 * @param tableName 表名
+	 * @param param 参数
+	 * @param beanCls 返回对象类型
+	 * @return
+	 */
 	public <T> List<T> queryLog(String tableName, Map<String, Object> param, Class<T> beanCls) {
 		checkStoreProperties(beanCls);
 		List<T> retList = new ArrayList<T>();
