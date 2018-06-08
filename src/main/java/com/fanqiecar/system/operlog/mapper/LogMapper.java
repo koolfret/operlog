@@ -29,5 +29,5 @@ public interface LogMapper {
 			@Param("userId") Long userId, @Param("userName") String userName, @Param("methodName") String methodName,
 			@Param("viewOper") String viewOper, @Param("extLog") Map<String, Object> extLog);
 	
-	public  List<Map<String,Object>> queryLog(@Param("tableName") String tableName,@Param("param") Map<String, Object> param);
+	public  <T> List<T> queryLog(@Param("tableName") String tableName,@Param("param") Map<String, Object> param);
 }

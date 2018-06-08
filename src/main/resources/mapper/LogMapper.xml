@@ -27,7 +27,9 @@
 		)
 	</insert>
 	
-	<select id="queryLog" resultType="map">
+	<!-- test -->
+	<!-- resultType="com.fanqiecar.test.operlog.ViolationOperLog" -->
+	<select id="queryLog" resultType="map" >
 		select * from ${tableName} 
 		<where>
 			<foreach collection="param.keys"  separator="," item="item" >
