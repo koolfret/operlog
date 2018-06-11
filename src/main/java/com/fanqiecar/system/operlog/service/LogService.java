@@ -132,10 +132,22 @@ public class LogService {
 	 * @return
 	 */
 	public <T> List<T> queryLog(String tableName, Map<String, Object> param, Class<T> beanCls) {
+		List<Map<String, Object>> listMap = this.logMapper.queryLog(tableName, param);
+		List<T> retList=this.convertMap(listMap, beanCls);
+		// List<T> rst=logMapper.queryLog(tableName,param);
+		return retList;
+
+	}
+	
+	/**
+	 * 把返回的Map<String,Object>转换为List<T>
+	 * @param listMap mybatis返回的Map<String,Object>
+	 * @param beanCls 转换的目标对象类类型
+	 * @return 转换后的List
+	 */
+	public <T> List<T> convertMap(List<Map<String,Object>> listMap,Class<T> beanCls){
 		checkStoreProperties(beanCls);
 		List<T> retList = new ArrayList<T>();
-
-		List<Map<String, Object>> listMap = this.logMapper.queryLog(tableName, param);
 		if (listMap != null) {
 			for (Map<String, Object> m : listMap) {
 				try {
@@ -146,10 +158,7 @@ public class LogService {
 				}
 			}
 		}
-
-		// List<T> rst=logMapper.queryLog(tableName,param);
 		return retList;
-
 	}
 
 	private <T> Map<String, Object> convertFields(Map<String, Object> map, Class<T> beanCls) {
