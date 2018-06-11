@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 import com.fanqiecar.system.operlog.mapper.LogMapper;
 
 @Service
-public class LogService {
+public class LogService implements ILogService{
 	private static Log log = LogFactory.getLog(LogService.class.getName());
 	private static Map<String, Map<String, String>> resultClassProperties = new ConcurrentHashMap<String, Map<String, String>>();
 	@Autowired
