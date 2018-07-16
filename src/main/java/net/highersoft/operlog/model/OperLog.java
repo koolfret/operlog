@@ -1,4 +1,4 @@
-package com.fanqiecar.system.operlog.model;
+package net.highersoft.operlog.model;
 
 import java.util.Date;
 

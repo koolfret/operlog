@@ -1,4 +1,4 @@
-package com.fanqiecar.test.operlog;
+package net.highersoft.test.operlog;
 
 import java.util.HashMap;
 import java.util.List;

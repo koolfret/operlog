@@ -1,4 +1,4 @@
-package com.fanqiecar.test.operlog;
+package net.highersoft.test.operlog;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fanqiecar.system.operlog.service.LogService;
+import net.highersoft.operlog.service.LogService;
 
 @Service
 public class TestService {

@@ -1,4 +1,4 @@
-package com.fanqiecar.system.operlog.service;
+package net.highersoft.operlog.service;
 
 import java.util.List;
 import java.util.Map;

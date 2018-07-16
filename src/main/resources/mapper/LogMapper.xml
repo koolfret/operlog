@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fanqiecar.system.operlog.mapper.LogMapper">
+<mapper namespace="net.highersoft.operlog.mapper.LogMapper">
     
 	
 	
@@ -28,7 +28,7 @@
 	</insert>
 	
 	<!-- test -->
-	<!-- resultType="com.fanqiecar.test.operlog.ViolationOperLog" -->
+	<!-- resultType="net.highersoft.test.operlog.ViolationOperLog" -->
 	<select id="queryLog" resultType="map" >
 		select * from ${tableName} 
 		<where>

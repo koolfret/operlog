@@ -1,4 +1,4 @@
-package com.fanqiecar.system.operlog.mapper;
+package net.highersoft.operlog.mapper;
 
 import java.util.Date;
 import java.util.List;

@@ -1,8 +1,8 @@
-package com.fanqiecar.test.operlog;
+package net.highersoft.test.operlog;
 
 import java.text.SimpleDateFormat;
 
-import com.fanqiecar.system.operlog.model.OperLog;
+import net.highersoft.operlog.model.OperLog;
 
 public class ViolationOperLog extends OperLog{
 	private Integer violationId;

@@ -22,7 +22,7 @@
      
    
 
-    <context:component-scan base-package="com.fanqiecar" >
+    <context:component-scan base-package="net.highersoft" >
     </context:component-scan>
     
    
@@ -47,7 +47,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />
         <property name="url" value="jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=utf8" />
         <property name="username" value="root" />
-        <property name="password" value="" />
+        <property name="password" value="chzh" />
     </bean>
 	
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -61,7 +61,7 @@
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.fanqiecar.**.mapper"></property>
+        <property name="basePackage" value="net.highersoft.**.mapper"></property>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 	

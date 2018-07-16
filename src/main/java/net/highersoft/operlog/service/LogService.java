@@ -1,4 +1,4 @@
-package com.fanqiecar.system.operlog.service;
+package net.highersoft.operlog.service;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
@@ -21,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fanqiecar.system.operlog.mapper.LogMapper;
+import net.highersoft.operlog.mapper.LogMapper;
 
 @Service
 public class LogService implements ILogService{
